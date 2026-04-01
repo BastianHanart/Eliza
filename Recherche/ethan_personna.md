@@ -1,7 +1,7 @@
-# Persona — Students Looking for Events
+# Persona — Etudiant cherchant les meilleur offre alimentaire
 
 ## Identity
-    - Name: Ethan 
+    - Prénom: Ethan 
     - Age: 20 
     - Status: Etudiant 
     - City: Lille  
@@ -12,8 +12,8 @@
     - Avoir le meilleur qualité prix sur ses produits
 
 ## Motivations
-    - Faire un maximum d'économies
-    - Feeling connected to local student life.
+    - Faire un maximum d'économies.
+    - Pouvoir se libérer du pouvoir d'achat pour d'autre activitée.
 
 ## Habitudes
     - Traîne souvent sur les réseaux sociaux. 
