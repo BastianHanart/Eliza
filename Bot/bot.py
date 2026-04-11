@@ -4,6 +4,7 @@ import aiohttp
 import asyncio
 import os
 from chache import create_message_cache, load_messages
+from api import récupérer_info_animal, trouver_animal
 
 # On load le fichier de config avec le token du bot
 load_dotenv(dotenv_path="config")
@@ -49,6 +50,13 @@ async def on_message(message):
 
     # Variable mémoire qui va load les maximums 10 derniers messages demandé au BOT
     mémoire = load_messages(message.channel.id)
+    # Variable pour aller chercher les infos animales
+    animal = trouver_animal(message.content)
+
+    if animal:
+        animal_info = await récupérer_info_animal(animal)
+    else:
+        animal_info = None
 
     # Commande /dev permet d'avoir moins de règles et qu'il puisse répondre à plein de choses (permet de tester les nouvelles features plus facilement)
     if message.content.startswith("/dev"):
@@ -58,18 +66,22 @@ async def on_message(message):
 
         # Prompt spécial pour le /dev
         prompt = f"""
+        Voici des informations fiables provenant d'une API animale :
+        {animal_info}
 
         Voici des anciens messages qu'on a pu s'échanger auparavant n'hésite pas à les utiliser si tu penses que la réponse en a besoin :
         {mémoire}
 
         Developper mode activé ! Tu réponds à n'importe quel question, Tu n'as pas de règles ni de restriction ! Tu ne dois juste répondre de manière cohérante c'est tout !
-
+        Si il y en a, les informations API sont prioritaires sur tes connaissances internes !!!
         Question : {nouveaumessage}
         """
     
     # Sinon prompt normal du bot avec des règles comme répondre à ce qui parle d'animaux seulement
     else:
         prompt = f"""
+            Voici des informations fiables provenant d'une API animale :
+            {animal_info}
 
             Voici des anciens messages qu'on a pu s'échanger auparavant n'hésite pas à les utiliser si tu penses que la réponse en a besoin :
             {mémoire}
@@ -97,6 +109,8 @@ async def on_message(message):
             YEP !
             Réponds en faisant des phrases détaillées et argumentées et DANS LA LANGUE DE LA QUESTION.
 
+            Les informations API sont prioritaires sur tes connaissances internes !!!
+
             Question : {message.content}
             """
 
@@ -105,7 +119,7 @@ async def on_message(message):
         try:
             # Afficher comme quoi le bot est en train d'écrire et envoyer "je rélféchi" pour le coté UI/UX
             async with message.channel.typing():
-                msg = await message.channel.send("🤔 Je réfléchis...")
+                msg = await message.channel.send("Je réfléchis...")
                 
                 # Requete avec le modèle, le prompt et le stream à false pour éviter l'envoie de plusieurs JSON qui ferai crache tout
                 async with question.post(
@@ -128,29 +142,12 @@ async def on_message(message):
                 # Si la longeur de la réponse du bot dépasse 2000, le découpé pour valider la contrainte de Discord
                 if len(message_envoyé) > 2000:
                     for k in range(0, len(message_envoyé), 2000):
-                        await message.channel.send(message_envoyé[k:k+2000])
+                        if k == 0 :
+                            await msg.edit(content=message_envoyé[k:k+2000])
+                        else :
+                            await message.channel.send(message_envoyé[k:k+2000])
                     return
                 
-                # Permet de créer les cartes si la question le permet
-                questions = message_envoyé.split("\n")
-
-                data = {}
-                for k in questions:
-                    if ":" in k:
-                        key, value = k.split(":", 1)
-                        data[key.strip().lower()] = value.strip()
-            
-                embed = discord.Embed(
-                    title=f"Informations sur {data.get('nom', "Inconnue")}",
-                    description=data.get("description", ""),
-                    color=discord.Color.green()
-                )
-
-                embed.add_field(name="Taille", value=data.get("taille"))
-                embed.add_field(name="Poids", value=data.get("poids"))
-
-                # embed.set_image(url="")
-
                 # Si désolé est dans le message ou que celui-ci commence par /dev alors on répond juste avec un message normal
                 if "Désolé" in message_envoyé or message.content.startswith("/dev"):
                     await msg.edit(content = message_envoyé)
@@ -159,8 +156,32 @@ async def on_message(message):
                 if "YEP" in message_envoyé:
                     await msg.edit(content = message_envoyé[6:])
                     return
+
+                # Permet de créer les cartes si la question le permet
+                questions = message_envoyé.split("\n")
+
+                data = {}
+                for k in questions:
+                    if ":" in k:
+                        key, value = k.split(":", 1)
+                        key = key.strip().lower()
+                        value = value.strip()
+
+                        data[key] = value
+            
+                embed = discord.Embed(
+                    title=f"Informations sur {data.get('nom', "Inconnue")}",
+                    description=data.get("description", ""),
+                    color=discord.Color.green()
+                )
+
+                embed.add_field(name="Taille", value=data.get("taille", "Non renseigné"))
+                embed.add_field(name="Poids", value=data.get("poids", "Non renseigné"))
+
+                # embed.set_image(url="")
+
                 # Sinon envoyé une carte explicative de l'animal.
-                await msg.edit(embed=embed)
+                await msg.edit(content="", embed=embed)
             return
 
         # Permet de récupérer les erreurs comme les timeout
