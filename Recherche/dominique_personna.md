@@ -1,31 +1,38 @@
-# Persona — Students Looking for Events
+# Persona — Vétérinaire Gestionnaire de Foyer
 
-## Identity
-    - Prénom: Dominique 
-    - Age: 50 
-    - Status: Mère de famille 
-    - City: Croix  
-    - Context: Gère le budget du foyer avec une grande rigueur. Elle fait ses courses très régulièrement et doit composer avec des revenus limités pour nourrir toute sa famille.
+## Identité
+- **Prénom** : Dominique  
+- **Âge** : 50 ans  
+- **Statut** : Mère de famille  
+- **Ville** : Croix  
+- **Profession** : Vétérinaire (en clinique ou cabinet)  
+
 
 ## But
-    - Optimiser chaque euro dépensé.
-    - Garantir l'équilibre.
+- Optimiser chaque euro dépensé sans perdre de temps.  
+- Assurer une alimentation saine et équilibrée pour sa famille.  
+- Trouver un équilibre entre vie professionnelle intense et gestion du foyer.
 
 ## Motivations
-    - Sécurité financière.
-    - Esprit communautaire (Prendre soins de sa famille).
+- Sécurité financière sur le long terme.  
+- Bien-être et santé de sa famille.  
+- Efficacité dans l’organisation quotidienne.  
+- Valeurs de soin et de responsabilité (cohérentes avec son métier).
 
 ## Habitudes
-    - Utilise souvent des réseaux sociaux tel que Facebook. 
-    - Compare souvent les prix sur interet
+- Utilise régulièrement Facebook pour suivre les bons plans locaux et recommandations.  
+- Consulte rapidement les offres en ligne entre deux consultations.  
+- Compare les prix, mais privilégie les solutions rapides et fiables.  
+- Fait ses courses de manière planifiée (souvent en une seule session hebdomadaire).
 
-## Frustrations / Point de douleurs
-    - Les offres commercial sont souvent cachées dans des conditions.
-    - Pertes de temps (met trop de temps a trouver les bons plans).
-    - Publicité mensongère
+## Frustrations / Points de douleur
+- Manque de temps pour chercher les bonnes offres.  
+- Offres commerciales peu transparentes ou trop complexes.  
+- Trop d’informations dispersées (apps, sites, pubs).  
+- Publicités trompeuses ou non adaptées à ses besoins.  
 
-
-## Besoins clé
-    - Centralisation des offres.
-    - Utilisation simple et efficace.
-    - Détails de l'offre immédiat.
+## Besoins clés
+- Centralisation claire des offres (gain de temps).  
+- Interface simple, rapide, sans friction.  
+- Informations immédiates et fiables (prix, conditions, disponibilité).  
+- Recommandations pertinentes (qualité + prix).
