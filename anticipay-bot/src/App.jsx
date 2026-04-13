@@ -13,11 +13,19 @@ const App = () => {
             Des conseils instantanés propulsés par l'IA pour la santé de votre animal, 
             directement dans Discord.
           </p>
-          <button className="btn-discord">Ajouter à Discord</button>
+          <a 
+            href="https://discord.com/oauth2/authorize?client_id=1488182236233859173" 
+            className="btn-discord" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none', display: 'inline-block' }}
+          >
+            Ajouter à Discord
+          </a>
         </div>
         <div className="hero-image">
           <div className="img-card">
-            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&q=80&w=600" alt="Dachshund" />
+            <img src="https://cdn.discordapp.com/attachments/1488182685892350004/1493211840572952586/veterinary-doctor-doing-vaccination-for-dog-free-vector.png?ex=69de2565&is=69dcd3e5&hm=30a671da3e751f40d0b6a24ebad55bc71d4d846ef4d798e66f4574d1c407ddf5&" alt="Dachshund" />
             <div className="analysis-notif">
               <span className="dot"></span>
               <p>Analyse VetBot : Recommandation prête en 2s</p>
