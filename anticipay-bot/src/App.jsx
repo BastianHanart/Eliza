@@ -94,7 +94,7 @@ const App = () => {
           <div className="discord-msg">
             <div className="avatar user-av">U</div>
             <div>
-              <p className="dc-user">Propriétaire42 <span className="dc-time">14:34</span></p>
+              <p className="dc-user">Oles <span className="dc-time">14:34</span></p>
               <p className="dc-text">Mon golden retriever boite de la patte arrière et semble souffrir quand je la touche.</p>
             </div>
           </div>

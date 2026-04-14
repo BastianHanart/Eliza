@@ -2,7 +2,7 @@
   --bg-color: #0d1110;
   --card-bg: #161d1c;
   --accent-green: #10b981;
-  --accent-green-glow: rgba(16, 185, 129, 0.3); /* Pour le dégradé */
+  --accent-green-glow: rgba(16, 185, 129, 0.7); /* Pour le dégradé */
   --text-main: #ffffff;
   --text-dim: #94a3b8;
   --discord-bg: #2f3136;
@@ -90,7 +90,7 @@ body {
 /* grid */
 .steps-grid, .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
 }
 
