@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
+import vetImg from './assets/veterinaire.svg'; 
 
 const App = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const questions = [
+    {
+      q: "Est-ce que VetBot remplace un vétérinaire ?",
+      a: "Non, VetBot est un outil d'assistance et de conseil. Il ne remplace en aucun cas l'examen physique et le diagnostic d'un vétérinaire professionnel."
+    },
+    {
+      q: "Quels types de symptômes VetBot peut-il analyser ?",
+      a: "VetBot peut analyser des symptômes courants comme la boiterie, les problèmes digestifs, cutanés ou les changements de comportement."
+    },
+    {
+      q: "Quelle est la précision de VetBot ?",
+      a: "Notre IA est entraînée sur des milliers de cas vétérinaires, offrant une analyse fiable pour orienter l'urgence de la situation."
+    },
+    {
+      q: "VetBot est-il gratuit ?",
+      a: "Oui, les fonctions de base et l'analyse de premier niveau sont totalement gratuites sur Discord."
+    },
+    {
+      q: "De quelles informations VetBot a-t-il besoin ?",
+      a: "Il suffit d'indiquer l'espèce, la race, l'âge approximatif et de décrire les symptômes observés de la manière la plus précise possible."
+    }
+  ];
+
   return (
     <div className="container">
       {/* header/haut de page*/}
@@ -25,7 +51,7 @@ const App = () => {
         </div>
         <div className="hero-image">
           <div className="img-card">
-            <img src="https://cdn.discordapp.com/attachments/1488182685892350004/1493211840572952586/veterinary-doctor-doing-vaccination-for-dog-free-vector.png?ex=69de2565&is=69dcd3e5&hm=30a671da3e751f40d0b6a24ebad55bc71d4d846ef4d798e66f4574d1c407ddf5&" alt="Dachshund" />
+            <img src={vetImg} alt="Illustration VetBot" />
             <div className="analysis-notif">
               <span className="dot"></span>
               <p>Analyse VetBot : Recommandation prête en 2s</p>
@@ -57,7 +83,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* infomation */}
+      {/* information */}
       <section className="section">
         <h2 className="section-title">Tout ce dont vous avez besoin</h2>
         <p className="section-subtitle">Une assistance complète pour la santé de vos animaux à portée de main</p>
@@ -92,9 +118,9 @@ const App = () => {
         <div className="discord-container">
           <div className="discord-header"># sante-animale</div>
           <div className="discord-msg">
-            <div className="avatar user-av">U</div>
+            <div className="avatar user-av">G</div>
             <div>
-              <p className="dc-user">Oles <span className="dc-time">14:34</span></p>
+              <p className="dc-user">GOATier <span className="dc-time">14:34</span></p>
               <p className="dc-text">Mon golden retriever boite de la patte arrière et semble souffrir quand je la touche.</p>
             </div>
           </div>
@@ -108,20 +134,25 @@ const App = () => {
         </div>
       </section>
 
-      {/*question */}
+      {/* FAQ  */}
       <section className="section faq-section">
         <h2 className="section-title">Questions fréquemment posées</h2>
         <div className="faq-list">
-          {[
-            "Est-ce que VetBot remplace un vétérinaire ?",
-            "Quels types de symptômes VetBot peut-il analyser ?",
-            "Quelle est la précision de VetBot ?",
-            "VetBot est-il gratuit ?",
-            "De quelles informations VetBot a-t-il besoin ?"
-          ].map((q, i) => (
-            <div key={i} className="faq-item">
-              <span>{q}</span>
-              <span className="plus">+</span>
+          {questions.map((item, i) => (
+            <div 
+              key={i} 
+              className={`faq-item ${activeIndex === i ? 'active' : ''}`}
+              onClick={() => setActiveIndex(activeIndex === i ? null : i)}
+            >
+              <div className="faq-question">
+                <span>{item.q}</span>
+                <span className="plus">{activeIndex === i ? '-' : '+'}</span>
+              </div>
+              {activeIndex === i && (
+                <div className="faq-answer">
+                  <p>{item.a}</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
