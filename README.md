@@ -43,9 +43,9 @@ Après avoir installer tout le projet, lancer un terminal. <br>
 Se mettre au niveau de la racine du projet et faire ces commandes : <br>
 
 ```
-- cd anticipay-bot
-- npm install
-- npm run dev
+cd anticipay-bot
+npm install
+npm run dev
 ``` 
 
 Après avoir fais tout cela, vous devriez avoir dans le terminal un ligne écrit : 
