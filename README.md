@@ -33,3 +33,29 @@ Il faut tout de même noté que VetBot n'est pas vétérinaire. il ne fera jamai
 ## Landing Page
 
 Pour promouvoir notre ChatBot, nous avons créer une landing page présentant ses différentes fonctionnalités. On y présente notre bot, son but, son rôle, ses compétences et propose à l'utilisateur de l'ajouter à son serveur Discord. Le style de cette page rappelle l'univers animalier et vétérinaire avec le vert et les animaux présent. L'interface et l'expérience utilisateur à été le moteur clé de ce projet, c'est pourquoi cette page propose un visuel agréable et professionnelle.
+
+
+## Utilisation de notre projet
+
+Pour pouvoir profiter de notre projet rien de plus simple, il vous suffit de suivre ces étapes : 
+
+Après avoir installer tout le projet, lancer un terminal. <br>
+Se mettre au niveau de la racine du projet et faire ces commandes : <br>
+
+```
+- cd anticipay-bot
+- npm install
+- npm run dev
+``` 
+
+Après avoir fais tout cela, vous devriez avoir dans le terminal un ligne écrit : 
+```
+Local:   http://localhost:5173/
+```
+Vous faire ctrl + click sur le lien ce qui devrai vous envoyer sur internet avec cette même URL (http://localhost:5173/)<br>
+Sinon la rentrer simplement dans votre navigateur internet.
+
+Une fois sur la page, vous devriez trouver un bouton vert avec écrit "Ajouter à Discord". <br>
+Cliquez dessus et faite la démarche pour l'ajouter à votre serveur avec des droits lui permettant d'écrire, de supprimer des messages et de faire des intégrations pour vous permettre d'accéder à toutes ses fonctionnalitées.
+
+Une fois ajouté à votre serveur, il ne vous suffit plus que d'utiliser ses différentes features pour obtenir l'aide nécessaire au bien-être de votre/vos anim(al/aux). N'hésitez pas à commencer par faire /help pour avoir toutes les informations sur ses fonctionnalitées !
