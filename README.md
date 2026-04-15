@@ -11,7 +11,7 @@ Par la suite, il nous a fallu comprendre l'enjeux et l'impact que pouvait avoir 
 Et enfin, car cet élément est au coeur de nombreux débats et est une vraie difficulté de notre époque. La question des données personnelles en ligne et du respect de la vie privée. 
 Il a fallu nous assurer que les règles de la RGPD était respectées par notre produit. Trouver ses points faibles et les résoudre, et comprendre les enjeux de tous cela. 
 
-## Bot
+## ChatBot
 
 Notre ChatBot, VetBot, est spécialiste des animaux, plutôt tourné du côté vétérinaire. Fine-tuner depuis un modèle open-source mistral proposé par le site Ollama, il a été modifié, amélioré et pensé pour répondre correctement à notre sujet. 
 Celui-ci est capable de répondre de manière naturelle à l'utilisateur.
