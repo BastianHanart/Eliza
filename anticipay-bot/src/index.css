@@ -235,3 +235,16 @@ body {
     text-align: center;
   }
 }
+
+.video-container {
+  max-width: 800px; /* ajuste la taille ici bastian */
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
-import vetImg from './assets/veterinaire.svg'; 
+import vetImg from './assets/veterinaire.svg';
+import demoVid from './assets/demo.mp4'; 
 
 const App = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -52,10 +53,7 @@ const App = () => {
         <div className="hero-image">
           <div className="img-card">
             <img src={vetImg} alt="Illustration VetBot" />
-            <div className="analysis-notif">
-              <span className="dot"></span>
-              <p>Analyse VetBot : Recommandation prête en 2s</p>
-            </div>
+            {/* Le bloc analysis-notif a été supprimé ici */}
           </div>
         </div>
       </header>
@@ -111,28 +109,25 @@ const App = () => {
         </div>
       </section>
 
-      {/* demo conversation */}
+      {/* demo video */}
       <section className="section">
-        <h2 className="section-title">Voyez-le en action</h2>
-        <p className="section-subtitle">Une vraie conversation sur Discord</p>
-        <div className="discord-container">
-          <div className="discord-header"># sante-animale</div>
-          <div className="discord-msg">
-            <div className="avatar user-av">G</div>
-            <div>
-              <p className="dc-user">GOATier <span className="dc-time">14:34</span></p>
-              <p className="dc-text">Mon golden retriever boite de la patte arrière et semble souffrir quand je la touche.</p>
-            </div>
-          </div>
-          <div className="discord-msg">
-            <div className="avatar bot-av">V</div>
-            <div>
-              <p className="dc-user">VetBot <span className="bot-tag">BOT</span> <span className="dc-time">14:34</span></p>
-              <p className="dc-text">Je vais vous aider. Pourriez-vous me dire :<br/>1. Depuis combien de temps boite-t-elle ?<br/>2. Y a-t-il un gonflement ou de la chaleur ?</p>
-            </div>
-          </div>
-        </div>
-      </section>
+  <h2 className="section-title">Voyez-le en action</h2>
+  <p className="section-subtitle">Une démonstration rapide de VetBot sur Discord</p>
+  
+  <div className="video-container">
+    <video 
+      width="100%" 
+      controls 
+      autoPlay 
+      muted 
+      loop 
+      style={{ borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.4)' }}
+    >
+      <source src={demoVid} type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture de vidéos.
+    </video>
+  </div>
+</section>
 
       {/* FAQ  */}
       <section className="section faq-section">
