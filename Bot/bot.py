@@ -2,10 +2,8 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import aiohttp
-import asyncio
 import os
 from chache import create_message_cache, load_messages
-from api import récupérer_info_animal, trouver_animal
 
 # On load le fichier de config avec le token du bot
 load_dotenv(dotenv_path="config")
@@ -96,10 +94,6 @@ async def help_command(interaction: discord.Interaction):
 @client.tree.command(name="delete", description="Supprimer n-messages du channel")
 async def delete(interaction: discord.Interaction, nombre: int):
     
-    # On vérifie que le message provient bien du bon channel
-    # if (interaction.channel.id != 1488197358012338206):
-    #     return
-    
     # Vérifier la validité du nombre chosis
     if nombre <= 0:
         await interaction.response.send_message("Chosissez un nombre valide de message à supprimer" , ephemeral=True)
@@ -117,10 +111,6 @@ async def delete(interaction: discord.Interaction, nombre: int):
 @client.tree.command(name="info", description="Avoir des infos sur un animal")
 async def info(interaction: discord.Interaction, nom: str):
 
-    # On vérifie que le message provient bien du bon channel
-    # if interaction.channel.id != 1488197358012338206:
-    #     return
-    
     await interaction.response.defer()
     
     # prompt à envoyer au bot 
@@ -141,7 +131,7 @@ async def info(interaction: discord.Interaction, nom: str):
             - Pas de JSON, pas de format clé:valeur
             - Pas de texte inutile
 
-            Format attendu (style libre mais propre) :
+            Format attendu (style linteraction.channel.idibre mais propre) :
 
             **Nom :**
             ...
@@ -183,22 +173,29 @@ async def info(interaction: discord.Interaction, nom: str):
 async def diagnostic(interaction: discord.Interaction, message: str):
 
     await interaction.response.defer()
+
+
+    memoire = load_messages(interaction.channel.id)
         
     # prompt à envoyer au bot 
     prompt = f"""
     Tu es VETBot.
 
-    Tu dois OBLIGATOIREMENT faire un choix entre 2 cas :
+    Voici ta mémoire des anciens actuels. Utilise là si elle peut t'aider à répondre au message actuel {memoire}.
+
+    Tu dois OBLIGATOIREMENT faire un choix entre 2 cas, Bien sûr tu ne DOIS en AUCUN CAS ANONCER à l'utilisateur quels choix tu as pris, tes étapes de cheminement, ni ton chemin de reflexion !:
 
     - CAS 1 = Si la demande de l'individu n'est pas un diagnostique de l'état d'un animal, une demande de conseil sur son animal, ou simplement une inquiétude sur l'animal, répond UNIQUEMENT : "Désolé je suis un expert du monde des animaux, je ne peux vous donner des informations sur votre demande" Tu n'ajoutes rien de plus, aucune autre explication n'est nécessaire !
 
-    - CAS 2 : Si la demande concerne un animal (conseil, inquiétude, boiterie, etc.) :
-    
+    - CAS 2 = Si la demande concerne un animal (conseil, inquiétude, boiterie, etc.) :
+
+        Rédige une réponse fluide et amicale (sans titres, sans "1." ou "2.", et sans mentionner les mots 'ANALYSE' ou 'ORIENTATION').
         1. ANALYSE : Propose des explications logiques et pédagogiques sur ce qui peut causer ce comportement (sans affirmer).
         2. RASSURANCE : Utilise un ton calme. Valorise le fait que le propriétaire soit attentif à son animal.
         3. ORIENTATION : Si cela semble sérieux, conseille une consultation vétérinaire comme une étape de sécurité normale.
 
         STRICTES RESTRICTIONS :
+        - RÉPONSE DIRECTE : Ne mentionne jamais "Cas 1" ou "Cas 2". Ne montre pas ton cheminement.
         - INTERDICTION de s'excuser. Ne dis JAMAIS "Je suis désolé".
         - INTERDICTION de donner un nom de médicament ou une dose.
         - INTERDICTION de dire "Je ne peux pas faire de diagnostic" (propose des pistes à la place).
@@ -208,6 +205,7 @@ async def diagnostic(interaction: discord.Interaction, message: str):
 
     try:
         message_envoye = await requete(prompt)
+        create_message_cache(message, interaction.channel.id)
         await interaction.followup.send(content=message_envoye)
 
     except Exception as e:
