@@ -1,0 +1,15 @@
+Myvenv
+
+.env
+
+node_modules
+
+*.json
+
+config
+
+cache
+
+__pycache__
+
+ancientbot.py
