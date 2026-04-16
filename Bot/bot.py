@@ -70,13 +70,26 @@ async def help_command(interaction: discord.Interaction):
     )
 
     embed.add_field(
-        name="/delete",
-        value="Vous souhaitez enlever certains messages de votre fils, cette fonction le permet !\nEx : `/delete 10`",
+        name="/purge",
+        value="Vous souhaitez enlever certains messages de votre fils, cette fonction le permet !\nEx : `/purge 10`",
         inline=False
     )
 
     embed.add_field(
-        name=""" /!\ Important /!\ """,
+        name="/créer",
+        value="Pour créer un salon textuel rien que pour vous et le bot, pour parler plus en privé !\nEx : `/créer bastian`\n",
+        inline=False
+    )
+
+    embed.add_field(
+        name="/delete",
+        value="Pour supprimer votre salon textuel lorsque vous avez fini de parler au bot !\nEx : `/delete bastian`",
+        inline=False
+    )
+
+
+    embed.add_field(
+        name="""!! Important !!""",
         value=(
             "• VETBot ne remplace PAS un vétérinaire\n"
             "• Aucun traitement ou diagnostic médical précis n'est donné\n"
@@ -91,7 +104,7 @@ async def help_command(interaction: discord.Interaction):
 
 
 ### Commande /delete qui permet de supprimer des messages ###
-@client.tree.command(name="delete", description="Supprimer n-messages du channel")
+@client.tree.command(name="purge", description="Supprimer n-messages du channel")
 async def delete(interaction: discord.Interaction, nombre: int):
     
     # Vérifier la validité du nombre chosis
@@ -211,5 +224,36 @@ async def diagnostic(interaction: discord.Interaction, message: str):
     except Exception as e:
         print("Erreur:", e)
         await interaction.followup.send("Erreur lors de la génération de votre réponse ...")
+
+@client.tree.command(name="créer", description="Créer un salon textuel pour pouvoir parler avec le bot")
+async def diagnostic(interaction: discord.Interaction, nom_salon: str):
+
+    await interaction.response.defer()
+
+    overwrites = {
+        interaction.guild.default_role: discord.PermissionOverwrite(view_channel=False),
+        interaction.user: discord.PermissionOverwrite(view_channel=True),
+        interaction.guild.me: discord.PermissionOverwrite(view_channel=True)
+    }
+
+    await interaction.guild.create_text_channel(nom_salon, overwrites=overwrites)
+    await interaction.followup.send(f"C'est bon, salon `{nom_salon}` crée.",  ephemeral=True)
+
+
+@client.tree.command(name="delete", description="Supprimer un salon textuel, pour supprimer la discussion avec le bot")
+async def diagnostic(interaction: discord.Interaction, nom_salon: str):
+
+    await interaction.response.defer()
+    channel = discord.utils.get(interaction.guild.channels, name=nom_salon)
+
+    if channel is None:
+        await interaction.followup.send("Désolé, salon introuvable.")
+        return
+    
+    # if interaction.user != channel.creator_id:
+    #     return await interaction.followup.send("Tu ne peux pas supprimer ce salon.")
+
+    await channel.delete()
+    await interaction.followup.send(f"C'est bon, salon `{nom_salon}` supprimé.",  ephemeral=True)
 
 client.run(os.getenv("TOKEN"))
