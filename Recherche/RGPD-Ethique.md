@@ -63,6 +63,3 @@ Le chatbot doit préciser que les estimations financières sont basées sur des 
 
 Le chatbot peut être tenu responsable en cas de :
 1.  **Perte de chance :** Si le chatbot rassure à tort un propriétaire alors que l'animal est en détresse vitale. (d'où la mise en place d'une détection de mot d'urgence).
-
----
-*Ce document est une synthèse à visée stratégique. Une consultation auprès d'un avocat spécialisé en droit numérique et droit animalier est fortement recommandée avant toute mise en production.*
