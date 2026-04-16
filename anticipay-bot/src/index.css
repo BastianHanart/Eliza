@@ -193,3 +193,45 @@ body {
   .hero-content h1 { font-size: 3rem; }
   .section-title { font-size: 2rem; }
 }
+
+/* Section Sécurité */
+.security-card {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px dashed var(--accent-green);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.security-icon {
+  font-size: 3rem;
+  background: rgba(16, 185, 129, 0.1);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.security-text h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--accent-green);
+}
+
+.security-text p {
+  margin: 0;
+  color: var(--text-dim);
+}
+
+@media (max-width: 700px) {
+  .security-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}

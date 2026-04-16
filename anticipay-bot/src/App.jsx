@@ -157,6 +157,20 @@ const App = () => {
           ))}
         </div>
       </section>
+
+      {/* Section Sécurité des données */}
+      <section className="section security-section">
+        <div className="security-card">
+          <div className="security-icon">🛡️</div>
+          <div className="security-text">
+            <h3>Confidentialité & Sécurité</h3>
+            <p>
+              Vos conversations sont <strong>100% anonymisées</strong>. Pour garantir votre vie privée, 
+              nous <strong>supprimons définitivement</strong> toutes les données d'analyse 24h après leur traitement.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
