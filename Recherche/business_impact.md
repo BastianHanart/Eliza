@@ -1,4 +1,4 @@
-# 🐾 Business Plan : Chatbot de Prévision & Optimisation d’Achats Vétérinaires  
+# Business Plan : Chatbot de Prévision & Optimisation d’Achats Vétérinaires  
 ## Analyse du ROI & Impact Commercial
 
 Ce document présente l’analyse financière et stratégique d’un chatbot prédictif dédié aux cliniques vétérinaires, visant à optimiser leurs achats (médicaments, consommables, alimentation, équipements).
