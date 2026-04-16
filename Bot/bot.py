@@ -43,7 +43,7 @@ async def requete(prompt):
                 return(data["response"])
 
         except Exception as exception:
-            print(exception)
+            print("damn", exception)
             return "Une erreur est survenue."
 
 @client.tree.command(name="help", description="Afficher l'aide du bot")
